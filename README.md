@@ -49,5 +49,5 @@ nginx -t && nginx -s reload
 ```
 
 # TODO
-- Containerize instructions
+- Containerize instructions (with Dockerfile)
 - Game auto-start and persistance instructions
