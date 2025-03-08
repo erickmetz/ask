@@ -8,7 +8,7 @@ curl -s -H "X-API-Key: REDACTED_KEY1" https://[web_server_url]/api/v1/secure/ask
 {"question":"What's a scientific discovery you hope to see in your lifetime?"}
 ```
 
-questions-master.txt has ~5 example questions but I would suggest finding about 1000 or so for a well-balanced game.
+questions-master.txt has ~5 example questions but I would suggest finding about 1000 or so, so that it does not get too boring or repetitive. Can be themed and composed to whatever kind of questions you'd like. Sourced through web-scraping or generated with an LLM such as ChatGPT.
 
 API Keys are hard-coded into auth.py.
 
