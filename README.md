@@ -47,3 +47,7 @@ Verify configuration and restart NGINX
 ```
 nginx -t && nginx -s reload
 ```
+
+# TODO
+- Containerize instructions
+- Game auto-start and persistance instructions
