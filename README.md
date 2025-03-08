@@ -16,7 +16,9 @@ Inspired by a game we have at home called Delve Deck https://www.boredwalk.com/p
 
 This is pretty much a copy/paste of https://timberry.dev/fastapi-with-apikeys that has been scoped and tailored for a simple purpose
 
-## Running
+# Running API
+
+## Running without Docker
 ```console
 # clone repo and enter source directory
 git clone git@github.com:erickmetz/ask.git
@@ -34,6 +36,21 @@ uvicorn main:app --reload
 deactivate
 ```
 
+## Runnign with Docker
+```console
+# Build container image
+docker build . -t ask-api
+
+# Run in non-detached mode (hit control C to exit)
+docker run -p8000:8000 ask-api
+
+# Alternatively, run in detatched mode, leaving API up in the background
+docker run -d -p8000:8000 ask-api
+
+# Finally, run in detached mode and restart every time server restarts unless/until you use the docker stop command.
+docker run -d --restart unless-stopped -p8000:8000 ask-api
+```
+
 # Proxy through NGINX
 Add this to site configuration within server {} section.
 
@@ -47,7 +64,3 @@ Verify configuration and restart NGINX
 ```
 nginx -t && nginx -s reload
 ```
-
-# TODO
-- Containerize instructions (with Dockerfile)
-- Game auto-start and persistance instructions
