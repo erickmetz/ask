@@ -36,7 +36,8 @@ uvicorn main:app --reload
 deactivate
 ```
 
-## Runnign with Docker
+## Running with Docker
+Pick *one* of the three "docker run" commands shown based on comment above them.
 ```console
 # Build container image
 docker build . -t ask-api
@@ -44,10 +45,10 @@ docker build . -t ask-api
 # Run in non-detached mode (hit control C to exit)
 docker run -p8000:8000 ask-api
 
-# Alternatively, run in detatched mode, leaving API up in the background
+# Run in detatched mode, leaving API up in the background
 docker run -d -p8000:8000 ask-api
 
-# Finally, run in detached mode and restart every time server restarts unless/until you use the docker stop command.
+# Run in detached mode and restart every time docker daemon is restarted (until you use the docker stop command)
 docker run -d --restart unless-stopped -p8000:8000 ask-api
 ```
 
