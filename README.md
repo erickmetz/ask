@@ -89,19 +89,6 @@ Add these locations to your site configuration within server {} section.
         proxy_pass http://localhost:8000/api/v1/secure/ask;
     }
 
-    location /api/v1/ask {
-        proxy_pass http://localhost:8000/api/v1/ask;
-    }
-
-    location /api/v1/demo/token {
-        proxy_pass http://localhost:8000/api/v1/demo/token;
-    }
-
-    # Static files and demo page
-    location /api/v1/demo/static/ {
-        proxy_pass http://localhost:8000/static/;
-    }
-
     location /api/v1/demo/ {
         proxy_pass http://localhost:8000/;
     }
