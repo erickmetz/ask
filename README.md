@@ -99,11 +99,11 @@ Add these locations to your site configuration within server {} section.
     }
 
     # Static files and demo page
-    location /static/ {
+    location /api/v1/demo/static/ {
         proxy_pass http://localhost:8000/static/;
     }
 
-    location / {
+    location /api/v1/demo/ {
         proxy_pass http://localhost:8000/;
     }
 ```

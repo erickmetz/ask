@@ -21,7 +21,7 @@ router = APIRouter()
 demo_router = APIRouter()
 
 # Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/api/v1/demo/static", StaticFiles(directory="static"), name="static")
 
 # Security schemes
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
