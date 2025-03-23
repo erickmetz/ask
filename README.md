@@ -18,6 +18,7 @@ Inspired by a game we have at home called Delve Deck https://www.boredwalk.com/p
 This started out as a copy/paste of https://timberry.dev/fastapi-with-apikeys that has been scoped and tailored for a simple purpose. 
 
 # API Demo Webpage
+![Screenshot](media/screenshot.png)
 
 ## Landing Page
 The API includes a demo webpage that showcases the API's functionality. The page is built using a modern, dark-themed UI and is served using FastAPI's templating system with Jinja2. The page is organized into separate components:
