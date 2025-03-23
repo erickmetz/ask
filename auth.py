@@ -1,8 +1,7 @@
-from fastapi import HTTPException, Depends, Security
+from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, APIKeyHeader
 from jwt_auth import verify_token
 from config import api_keys, JWT_SECRET
-import jwt
 from datetime import datetime, timedelta
 import secrets
 
@@ -36,26 +35,8 @@ async def authenticate(
         # If no API key, try JWT authentication
         if not jwt_token.credentials:
             raise HTTPException(status_code=401, detail="No valid authorization header")   
-        token = jwt_token.credentials
         
-        try:
-            # Verify the token
-            decoded = jwt.decode(
-                token, 
-                JWT_SECRET, 
-                algorithms=["HS256"],
-                audience="ask-api",  # Expected audience
-                options={
-                    "verify_aud": True,  # Verify audience
-                    "require": ["aud"]   # Require audience claim
-                }
-            )
-            username = decoded.get("sub", "unknown")
-        except jwt.ExpiredSignatureError:
-            raise HTTPException(status_code=401, detail="Token has expired")
-        except jwt.InvalidTokenError as e:
-            raise HTTPException(status_code=401, detail=f"Invalid token: {str(e)}")
-        except Exception as e:
-            raise HTTPException(status_code=401, detail="Token verification failed")
+        payload = verify_token(jwt_token)
+        username = payload.get("sub", "unknown")
            
     return username

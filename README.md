@@ -15,7 +15,7 @@ API Keys are hard-coded into config.py.
 
 Inspired by a game we have at home called Delve Deck https://www.boredwalk.com/products/delve-deck-conversation-cards
 
-This is pretty much a copy/paste of https://timberry.dev/fastapi-with-apikeys that has been scoped and tailored for a simple purpose
+This started out as a copy/paste of https://timberry.dev/fastapi-with-apikeys that has been scoped and tailored for a simple purpose. 
 
 # API Demo Webpage
 
@@ -33,14 +33,13 @@ The demo page implements a secure authentication flow using JWT tokens:
 
 1. Users enter their API key in the landing page
 2. The key is validated against the server's configured API keys
-3. Upon successful validation, a JWT token is generated and stored in an HTTP-only cookie
+3. Upon successful validation, a JWT token is generated and stored in a cookie
 4. The token is automatically included in subsequent API requests
 5. The server validates the token and enforces rate limiting
 6. Rate limit errors are displayed in red text on the page
 7. Authentication state is persisted across page reloads
 
 The authentication system includes:
-- Secure token storage using HTTP-only cookies
 - Automatic token validation on page load
 - Graceful error handling for invalid tokens
 - Rate limit enforcement with user-friendly error messages

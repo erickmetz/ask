@@ -33,7 +33,9 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Security(security))
             credentials.credentials, 
             JWT_SECRET, 
             algorithms=["HS256"],
+            audience="ask-api",  # Expected audience
             options={
+                "verify_aud": True,  # Verify audience
                 "verify_exp": True,  # Verify expiration time
                 "verify_iat": True,  # Verify issued at time
                 "verify_nbf": True,  # Verify not before time

@@ -33,19 +33,6 @@ async def get_demo():
 
 @demo_router.post("/token")
 async def get_token(api_key: str = Security(api_key_header)):
-    if not api_key or api_key not in api_keys:
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid API key"
-        )
-    user = api_keys[api_key]
-    access_token = create_access_token(user)
-    return {"access_token": access_token, "user": user}
-
-@app.post("/api/v1/demo/token")
-async def create_demo_token(request: Request):
-    api_key = request.headers.get("X-API-Key")
-    
     if api_key not in api_keys:
         raise HTTPException(status_code=401, detail="Invalid API key")
     
@@ -77,40 +64,3 @@ app.include_router(
     demo_router,
     prefix="/api/v1/demo"
 )
-
-@app.get("/", response_class=HTMLResponse)
-async def root():
-    return get_demo_page()
-
-@app.post("/api/v1/secure/ask")
-async def secure_ask(
-    question: str,
-    api_key: str = Security(api_key_header),
-    token: str = Security(bearer_scheme)
-):
-    # Check API key
-    if api_key not in api_keys:
-        raise HTTPException(status_code=401, detail="Invalid API key")
-    
-    # Check rate limit
-    enforce_rate_limit(api_key)
-    
-    # Verify JWT token
-    try:
-        user = authenticate(token)
-    except Exception as e:
-        raise HTTPException(status_code=401, detail=str(e))
-    
-    # Process the question and return response
-    return {"answer": f"Secure response for {user}: {question}"}
-
-@app.post("/api/v1/ask")
-async def ask(question: str, api_key: str = Security(api_key_header)):
-    if api_key not in api_keys:
-        raise HTTPException(status_code=401, detail="Invalid API key")
-    
-    # Check rate limit
-    enforce_rate_limit(api_key)
-    
-    # Process the question and return response
-    return {"answer": f"Response: {question}"}
