@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask API Demo</title>
+    <link rel="stylesheet" href="/static/css/styles.css?n={{ static_version }}">
+</head>
+<body>
+    <div class="container">
+        <h1 id="welcome">{{ welcome_message }}</h1>
+        <div id="auth-form">
+            <div class="form-group">
+                <input type="text" id="api-key" placeholder="Enter your API key">
+            </div>
+            <button onclick="authenticate()">Authenticate</button>
+        </div>
+        <div id="api-section" style="display: none;">
+            <button onclick="makeRequest()">Click to make a request to the Ask API!</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js?n={{ static_version }}"></script>
+</body>
+</html> 
