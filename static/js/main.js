@@ -1,3 +1,13 @@
+function showModal(message) {
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalBox = document.getElementById('modal-box');
+    modalBox.textContent = message;
+    modalOverlay.style.display = 'flex';
+    setTimeout(() => {
+        modalOverlay.style.display = 'none';
+    }, 1000);
+}
+
 async function authenticate() {
     const apiKey = document.getElementById('api-key').value;
     try {
@@ -25,7 +35,7 @@ async function authenticate() {
             throw new Error(errorData.detail || 'Authentication failed');
         }
     } catch (error) {
-        alert(error.message || 'Authentication failed. Please check your API key.');
+        showModal(error.message || 'Authentication failed. Please check your API key.');
     }
 }
 
@@ -76,7 +86,7 @@ async function makeRequest() {
             throw new Error(errorData.detail || 'Request failed');
         }
     } catch (error) {
-        alert('Failed to make request. Please try authenticating again.');
+        showModal('Failed to make request. Please try authenticating again.');
         showUnauthenticatedState();
     }
 }

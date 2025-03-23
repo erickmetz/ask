@@ -14,8 +14,19 @@
             <button onclick="authenticate()">Authenticate</button>
         </div>
         <div id="api-section" style="display: none;">
-            <button onclick="makeRequest()">Click to make a request to the Ask API!</button>
+            <div class="button-group">
+                <button onclick="makeRequest()">Click to make a request to the Ask API!</button>
+                <button class="logout-btn" onclick="showUnauthenticatedState()">Logout</button>
+            </div>
             <div id="result"></div>
+        </div>
+    </div>
+
+    <!-- Modal Box -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="modal-box" class="modal-box">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-content"></div>
         </div>
     </div>
 
