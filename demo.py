@@ -14,9 +14,10 @@ env = Environment(loader=FileSystemLoader(template_dir))
 # Generate a random version number for static files
 static_version = secrets.randbelow(1000000)
 
-def get_demo_page():
+def get_demo_page(channels):
     template = env.get_template('demo.html')
     return template.render(
         welcome_message="Welcome to the Ask API demo!",
-        static_version=static_version
+        static_version=static_version,
+        channels=channels
     ) 

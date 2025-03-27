@@ -7,4 +7,9 @@ JWT_SECRET = secrets.token_hex(32)
 api_keys = {
     "ask-api-key-123": "user123",
     "test-key-1": "user1"
-} 
+}
+
+channel_authorizations = {
+    "user123": ["random", "master", "channel1", "channel2"],
+    "user1": ["random","master", "channel1"]
+}

@@ -1,9 +1,8 @@
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, APIKeyHeader
 from jwt_auth import verify_token
-from config import api_keys, JWT_SECRET
+from config import api_keys, JWT_SECRET, channel_authorizations
 from datetime import datetime, timedelta
-import secrets
 
 # Security schemes
 api_key_header = APIKeyHeader(
@@ -40,3 +39,9 @@ async def authenticate(
         username = payload.get("sub", "unknown")
            
     return username
+
+def check_channel_authorization(username: str, channel: str) -> bool:
+    return channel in channel_authorizations.get(username, [])
+
+def get_authorized_channels(username: str) -> list[str]:
+    return channel_authorizations.get(username, [])
