@@ -1,10 +1,12 @@
-function showModal(message) {
+function showModal(message) {``
     const modalOverlay = document.getElementById('modal-overlay');
     const modalBox = document.getElementById('modal-box');
     modalBox.textContent = message;
-    modalOverlay.style.display = 'flex';
+    modalOverlay.classList.remove('hidden');
+    modalOverlay.classList.add('modal-overlay', 'show');
     setTimeout(() => {
-        modalOverlay.style.display = 'none';
+        modalOverlay.classList.remove('show');
+        modalOverlay.classList.add('hidden');
     }, 1000);
 }
 
@@ -51,8 +53,9 @@ function getToken() {
 }
 
 function showAuthenticatedState(user) {
-    document.getElementById('auth-form').style.display = 'none';
-    document.getElementById('api-section').style.display = 'block';
+    document.getElementById('auth-form').classList.add('hidden');
+    document.getElementById('api-section').classList.remove('hidden');
+    document.getElementById('result').style.display = 'block';
     document.getElementById('welcome').textContent = `Welcome to the ASK-API demo, ${user}!`;
 }
 
@@ -72,14 +75,14 @@ async function makeRequest() {
         if (response.ok) {
             const data = await response.json();
             const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
-            resultDiv.style.color = '#ffffff';  // Reset to default white color
+            resultDiv.classList.remove('hidden');
+            resultDiv.classList.add('show', 'result-ok');
             resultDiv.textContent = `Question: ${data.question}`;
         } else if (response.status === 429) {
             const errorData = await response.json();
             const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
-            resultDiv.style.color = '#ff6b6b';  // Red color for rate limit errors
+            resultDiv.classList.remove('hidden');
+            resultDiv.classList.add('show', 'result-error');
             resultDiv.textContent = errorData.detail || 'Rate limit exceeded. Please wait before making more requests.';
         } else {
             const errorData = await response.json();
@@ -92,13 +95,24 @@ async function makeRequest() {
 }
 
 function showUnauthenticatedState() {
-    document.getElementById('auth-form').style.display = 'block';
-    document.getElementById('api-section').style.display = 'none';
+    document.getElementById('auth-form').classList.remove('hidden');
+    document.getElementById('api-section').classList.add('hidden');
+    document.getElementById('result').classList.add('hidden');
     document.getElementById('welcome').textContent = 'Welcome to the Ask API demo!';
     localStorage.removeItem('user');
     // Clear the token cookie
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
 }
+
+// Add event listener to the authenticate button
+document.getElementById('authenticate-btn').addEventListener('click', authenticate);
+
+// Add event listener to the make request button
+document.getElementById('make-request-btn').addEventListener('click', makeRequest);
+
+// Add event listener to the logout button
+document.getElementById('logout-btn').addEventListener('click', showUnauthenticatedState);
+
 
 // Check for existing token on page load
 window.onload = async function() {

@@ -62,7 +62,6 @@ button:hover {
     padding: 15px;
     border-radius: 5px;
     background-color: #3d3d3d;
-    display: none;
 }
 
 .error {
@@ -127,4 +126,24 @@ button:hover {
 
 .logout-btn:hover {
     background-color: #c0392b;
-} 
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.result-ok {
+    color: #4CAF50;
+}
+
+.result-error {
+    color: #ff6b6b;
+}

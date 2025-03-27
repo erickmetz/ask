@@ -11,12 +11,12 @@
             <div class="form-group">
                 <input type="text" id="api-key" placeholder="Enter your API key">
             </div>
-            <button onclick="authenticate()">Authenticate</button>
+            <button id="authenticate-btn">Authenticate</button>
         </div>
-        <div id="api-section" style="display: none;">
+        <div id="api-section" class="hidden">
             <div class="button-group">
-                <button onclick="makeRequest()">Click to make a request to the Ask API!</button>
-                <button class="logout-btn" onclick="showUnauthenticatedState()">Logout</button>
+                <button id="make-request-btn">Click to make a request to the Ask API!</button>
+                <button class="logout-btn" id="logout-btn">Logout</button>
             </div>
             <div id="result"></div>
         </div>
@@ -25,8 +25,8 @@
     <!-- Modal Box -->
     <div id="modal-overlay" class="modal-overlay">
         <div id="modal-box" class="modal-box">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modal-content"></div>
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <div class="hidden" id="modal-content"></div>
         </div>
     </div>
 

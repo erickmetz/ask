@@ -45,6 +45,12 @@ The authentication system includes:
 - Graceful error handling for invalid tokens
 - Rate limit enforcement with user-friendly error messages
 
+## Full Disclosure
+I used the Cursor IDE Ask/Agent functions to generate and refactor a lot 
+of these updates change. This is my first time using such an IDE tool. 
+It's been pretty intersting but has also needed a fair amount of steering,
+troubleshooting, and corrections.
+
 # Running API
 
 ## Running without Docker
